@@ -1,13 +1,11 @@
 import React from 'react';
 import Aux from '../../hoc/Auxilary';
+import Header from '../Header/Header';
+import Maincontainer from '../../Containers/Maincontainer/Maincontainer';
 const Layout = (props) => (
    <Aux>
-       <div>
-           Links
-       </div>
-       <div>
-           {props.children}
-       </div>
+       <Header></Header>
+       <Maincontainer></Maincontainer>
    </Aux>
 
 );
