@@ -18,7 +18,7 @@ class App extends Component {
     <BrowserRouter>
     <div className="App">
       <Layout>
-        <Loginscreen></Loginscreen>
+        
       </Layout>
     </div>
     </BrowserRouter>
