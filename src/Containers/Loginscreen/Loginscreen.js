@@ -1,49 +1,61 @@
 import React, { Component } from 'react';
+import { Redirect } from "react-router-dom";
 import Login from '../../Components/Login/Login';
+import Register from '../../Components/Register/Register';
 
 class Loginscreen extends Component {
     constructor (props) {
         super (props);
         this.state = {
             Loginscreen: [],
-            loginmessage:'',
+            loginmessage:'Please Login',
             isLogin : true
         }
     }
-    componentDidMount () {
-        let Loginscreen = [];
-        Loginscreen.push(<Login /> );
-        console.log(' Inside componentWillMount')
-        let loginmessage = "Not Registered yet, Register Now";
-        this.setState = ( { 
-                Loginscreen:Loginscreen,
-                loginmessage:loginmessage
-        })
+    componentDidMount(){
+        let loginscreen=[];
+        loginscreen.push(<Login parentContext={this} />);
+        let loginmessage = "Not registered yet, Register Now";
+        this.setState({
+                      loginscreen:loginscreen,
+                      loginmessage:loginmessage
+                        })
+      }
+    handleClick(event){
+    // console.log("event",event);
+    let loginmessage;
+    let loginscreen=[];
+    if(this.state.isLogin){
+      loginscreen.push(<Register parentContext={this} appContext={this.props.appContext}/>);
+      loginmessage = "Already registered.Go to Login";
+      <Redirect to='/Register' />
+      this.setState({
+                     loginscreen:loginscreen,
+                     loginmessage:loginmessage,
+                     buttonLabel:"Login",
+                     isLogin:false
+                   })
     }
-    handleClick (event) {
-        let loginmessage;
-        if(this.state.isLogin) {
-            let Loginscreen= [];
-            Loginscreen.push(<Login parentContext={this} />)
-            this.setState({
-                Loginscreen: Loginscreen,
-                loginmessage: loginmessage,
-                isLogin:true
-            })   
-        }
-        else {
-            var Loginscreen= [];
-            Loginscreen.push()// create Register componet and logic for binding 
-        }
-
+    else{
+      loginscreen.push(<Login parentContext={this}/>);
+      loginmessage = "Not Registered yet.Go to registration";
+      <Redirect to='/Login' />
+      this.setState({
+                     loginscreen:loginscreen,
+                     loginmessage:loginmessage,
+                     isLogin:true
+                   })
     }
+  }
     render () {
         return (
             <div>
                  {this.state.loginmessage}
                  <div>
-                     <button name="Login" onClick= { (event) => this.handleClick(event)} />
+                     <button name="Login" onClick= { () => this.handleClick(this)}> Login</button>
+                     <button name="Register" onClick= { () => this.handleClick(this)}> Register</button>
                  </div>
+                 {this.state.loginscreen}
             </div>
         )
     }

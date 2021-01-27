@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../Maincontainer/Maincontainer.css';
 import Loginscreen from '../Loginscreen/Loginscreen';
-import Login from '../../Components/Login/Login';
 
-const Maincontainer = props => {
-
-    return (
-        <div className="container">
-            <Login></Login>
-        </div>
-    )
+class  Maincontainer extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+          loginPage:[]
+        }
+      }
+      
+    componentDidMount(){
+        var loginPage =[];
+        loginPage.push(<Loginscreen parentContext={this}/>);
+        this.setState({
+                      loginPage:loginPage
+                        })
+      }
+      render () {
+        return (
+            <div className="container">
+                {this.state.loginPage}
+            </div>
+        )
+      }
+    
 };
 
 export default Maincontainer;
