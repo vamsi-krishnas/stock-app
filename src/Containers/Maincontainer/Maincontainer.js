@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../Maincontainer/Maincontainer.css';
 import Loginscreen from '../Loginscreen/Loginscreen';
 
+
 class  Maincontainer extends Component {
     constructor(props){
         super(props);
@@ -21,7 +22,10 @@ class  Maincontainer extends Component {
         return (
             <div className="container">
                 {this.state.loginPage}
+                
             </div>
+            
+
         )
       }
     

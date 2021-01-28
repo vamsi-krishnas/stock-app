@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from "react-router-dom";
 import Login from '../../Components/Login/Login';
 import Register from '../../Components/Register/Register';
+import './Loginscreen.css'
 
 class Loginscreen extends Component {
     constructor (props) {
